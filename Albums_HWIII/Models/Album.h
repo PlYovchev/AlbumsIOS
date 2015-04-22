@@ -10,7 +10,7 @@
 #import "Artist.h"
 #import "Song.h"
 
-@interface Album : NSObject
+@interface Album : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString* name;
 @property (nonatomic) Artist* artist;

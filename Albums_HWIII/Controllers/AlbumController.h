@@ -16,4 +16,8 @@
 
 +(id)sharedAlbumController;
 
+-(void)loadInitialAlbumData;
+-(void)archiveTheAlbumsData;
+-(void)extractTheAlbumsData;
+
 @end

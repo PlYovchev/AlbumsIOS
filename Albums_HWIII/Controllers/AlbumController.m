@@ -8,6 +8,8 @@
 
 #import "AlbumController.h"
 
+#define ALBUMS_ARCHIVE_FILE @"albumsData"
+
 @implementation AlbumController
 
 static AlbumController* albumController = nil;
@@ -36,11 +38,23 @@ static AlbumController* albumController = nil;
         if(self){
             _albums = [NSMutableArray array];
             albumController = self;
-            [self populateAlbums];
+//            [self populateAlbums];
         }
     }
     
     return albumController;
+}
+
+-(void)loadInitialAlbumData{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* dictPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:ALBUMS_ARCHIVE_FILE];
+    if([[NSFileManager defaultManager] fileExistsAtPath:dictPath])
+    {
+        [self extractTheAlbumsData];
+    }
+    else{
+        [self populateAlbums];
+    }
 }
 
 -(void)populateAlbums{
@@ -59,5 +73,48 @@ static AlbumController* albumController = nil;
     [self.albums addObject:albumDeuce];
     [self.albums addObject:albumColdplay];
 }
+
+#pragma mark - Archiving/Extracting to/from file
+-(void)archiveTheAlbumsData{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    if ([paths count] > 0)
+    {
+        NSString* dictPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:ALBUMS_ARCHIVE_FILE];
+        [[NSFileManager defaultManager] removeItemAtPath:dictPath error:nil];
+        [NSKeyedArchiver archiveRootObject:self.albums toFile:dictPath];
+    }
+}
+
+-(void)extractTheAlbumsData{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    if ([paths count] > 0)
+    {
+        NSString* dictPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:ALBUMS_ARCHIVE_FILE];
+        NSMutableArray* availableVacationExtracted = [NSKeyedUnarchiver unarchiveObjectWithFile:dictPath];
+        self.albums = availableVacationExtracted;
+    }
+}
+
+
+//-(void)archiveTheAvailableVacationsList{
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    
+//    if ([paths count] > 0)
+//    {
+//        NSString* dictPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:AVAILABLE_VACATIONS_ARCHIVE_FILE];
+//        [[NSFileManager defaultManager] removeItemAtPath:dictPath error:nil];
+//        [NSKeyedArchiver archiveRootObject:self.availableVacations toFile:dictPath];
+//    }
+//}
+//
+//-(void)extractTheAvailableVacationsList{
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    if ([paths count] > 0)
+//    {
+//        NSString* dictPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:AVAILABLE_VACATIONS_ARCHIVE_FILE];
+//        NSMutableDictionary* availableVacationExtracted = [NSKeyedUnarchiver unarchiveObjectWithFile:dictPath];
+//        self.availableVacations = availableVacationExtracted;
+//    }
+//}
 
 @end

@@ -56,7 +56,7 @@
     albumCell.coverImage.image = album.coverImage;
     albumCell.labelAlbumName.text = album.name;
     albumCell.labelArtistName.text = album.artist.name;
-    albumCell.labelNumberSongs.text = [NSString stringWithFormat:@"%ld", album.numberOfSongs];
+    albumCell.labelNumberSongs.text = [NSString stringWithFormat:@"%ld", (long)album.numberOfSongs];
     
     return albumCell;
 }

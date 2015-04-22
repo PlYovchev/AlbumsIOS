@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "Artist.h"
 
-@interface Song : NSObject
+@interface Song : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString* name;
 @property (nonatomic, copy) NSArray* artists; //The artists are stored in an array because single song can be collaboration between more than one artists.

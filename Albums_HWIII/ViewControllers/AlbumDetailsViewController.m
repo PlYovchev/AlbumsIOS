@@ -51,8 +51,8 @@
     Album* album = albumController.chosenAlbum;
     self.lblAlbumTitle.text = album.name;
     self.lblAlbumArtist.text = album.artist.name;
-    self.lblReleasedYear.text = [NSString stringWithFormat:@"%ld", album.releaseYear];
-    self.lblTracksNumber.text = [NSString stringWithFormat:@"%ld", album.numberOfSongs];
+    self.lblReleasedYear.text = [NSString stringWithFormat:@"%ld", (long)album.releaseYear];
+    self.lblTracksNumber.text = [NSString stringWithFormat:@"%ld", (long)album.numberOfSongs];
     self.imageViewCover.image = album.coverImage;
 }
 
@@ -87,7 +87,7 @@
     Album* album = albumController.chosenAlbum;
     Song* song = [album.songs objectAtIndex:indexPath.row];
     
-    songCell.lblTrackNumber.text = [NSString stringWithFormat:@"%ld.", indexPath.row + 1];
+    songCell.lblTrackNumber.text = [NSString stringWithFormat:@"%d.", indexPath.row + 1];
     songCell.lblSongName.text = [song name];
     
     //Concatenate the names of the artists for the current song with ', ' and display them in 'lblSongArtists'.
@@ -101,7 +101,7 @@
     
     NSInteger minutes = song.durationInSec / 60;
     NSInteger seconds = song.durationInSec % 60;
-    songCell.lblSongDuration.text = [NSString stringWithFormat:@"%ld:%.2ld", minutes, seconds];
+    songCell.lblSongDuration.text = [NSString stringWithFormat:@"%ld:%.2ld", (long)minutes, (long)seconds];
     
     return songCell;
 }

@@ -21,4 +21,21 @@
     return self;
 }
 
+-(void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:_name forKey:@"name"];
+    [aCoder encodeObject:_artists forKey:@"artists"];
+    [aCoder encodeInteger:_durationInSec forKey:@"durationInSec"];
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super init];
+    if(self){
+        _name = [aDecoder decodeObjectForKey:@"name"];
+        _artists = [aDecoder decodeObjectForKey:@"artists"];
+        _durationInSec = [aDecoder decodeIntegerForKey:@"durationInSec"];
+    }
+    
+    return self;
+}
+
 @end

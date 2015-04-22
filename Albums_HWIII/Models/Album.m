@@ -43,4 +43,27 @@
     return [self.songs count];
 }
 
+-(void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:_name forKey:@"name"];
+    [aCoder encodeObject:_artist forKey:@"artist"];
+    [aCoder encodeInteger:_releaseYear forKey:@"releaseYear"];
+    
+    NSData* imageData = UIImagePNGRepresentation(_coverImage);
+    [aCoder encodeObject:imageData forKey:@"imageData"];
+    [aCoder encodeObject:_songs forKey:@"songs"];
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super init];
+    if(self){
+        _name = [aDecoder decodeObjectForKey:@"name"];
+        _artist = [aDecoder decodeObjectForKey:@"artist"];
+        _releaseYear = [aDecoder decodeIntegerForKey:@"releaseYear"];
+        _coverImage = [UIImage imageWithData:[aDecoder decodeObjectForKey:@"imageData"]];
+        _songs = [aDecoder decodeObjectForKey:@"songs"];
+    }
+    
+    return self;
+}
+
 @end
