@@ -87,7 +87,7 @@
     Album* album = albumController.chosenAlbum;
     Song* song = [album.songs objectAtIndex:indexPath.row];
     
-    songCell.lblTrackNumber.text = [NSString stringWithFormat:@"%d.", indexPath.row + 1];
+    songCell.lblTrackNumber.text = [NSString stringWithFormat:@"%ld.", indexPath.row + 1];
     songCell.lblSongName.text = [song name];
     
     //Concatenate the names of the artists for the current song with ', ' and display them in 'lblSongArtists'.

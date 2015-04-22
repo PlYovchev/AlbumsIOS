@@ -70,8 +70,26 @@ static AlbumController* albumController = nil;
     NSMutableArray* coldplatSongss = [NSMutableArray arrayWithObjects:songOneColdplay, songTwoColdplay, nil];
     Album* albumColdplay =  [[Album alloc]initWithName:@"Parachutes" andArtist:coldplay andSongs:coldplatSongss andCoverImage:[UIImage imageNamed:@"Coldplay.jpg"]andYear:2010];
     
+    Artist* adele = [[Artist alloc] initWithName:@"Adele"];
+    Song* songOneAdele = [[Song alloc] initWithName:@"Rain" andArtists:[NSArray arrayWithObject:adele] andDuration:246];
+    Song* songTwoAdele = [[Song alloc] initWithName:@"Fire" andArtists:[NSArray arrayWithObject:adele] andDuration:385];
+    Song* songThreeAdele = [[Song alloc] initWithName:@"Deep" andArtists:[NSArray arrayWithObject:adele] andDuration:267];
+    NSMutableArray* adeleSongss = [NSMutableArray arrayWithObjects:songOneAdele,songTwoAdele,songThreeAdele, nil];
+    Album* albumAdele = [[Album alloc]initWithName:@"21" andArtist:adele andSongs:adeleSongss andCoverImage:[UIImage imageNamed:@"Adele.jpg"] andYear:2011];
+    
+    Artist* sheeran = [[Artist alloc] initWithName:@"Ed Sheeran"];
+    Song* songOneSheeran = [[Song alloc] initWithName:@"OK" andArtists:[NSArray arrayWithObject:sheeran] andDuration:212];
+    Song* songTwoSheeran = [[Song alloc] initWithName:@"Don't" andArtists:[NSArray arrayWithObject:sheeran] andDuration:199];
+    Song* songThreeSheeran = [[Song alloc] initWithName:@"I see fire" andArtists:[NSArray arrayWithObject:sheeran] andDuration:199];
+    Song* songFourSheeran = [[Song alloc] initWithName:@"One" andArtists:[NSArray arrayWithObject:sheeran] andDuration:231];
+    Song* songFiveSheeran = [[Song alloc] initWithName:@"Sing" andArtists:[NSArray arrayWithObject:sheeran] andDuration:229];
+    NSMutableArray* sheeranSongss = [NSMutableArray arrayWithObjects:songOneSheeran,songTwoSheeran,songThreeSheeran,songFourSheeran,songFiveSheeran, nil];
+    Album* albumSheeran = [[Album alloc]initWithName:@"X" andArtist:sheeran andSongs:sheeranSongss andCoverImage:[UIImage imageNamed:@"Smashing"] andYear:2012];
+    
     [self.albums addObject:albumDeuce];
     [self.albums addObject:albumColdplay];
+    [self.albums addObject:albumAdele];
+    [self.albums addObject:albumSheeran];
 }
 
 #pragma mark - Archiving/Extracting to/from file
@@ -94,27 +112,5 @@ static AlbumController* albumController = nil;
         self.albums = availableVacationExtracted;
     }
 }
-
-
-//-(void)archiveTheAvailableVacationsList{
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    
-//    if ([paths count] > 0)
-//    {
-//        NSString* dictPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:AVAILABLE_VACATIONS_ARCHIVE_FILE];
-//        [[NSFileManager defaultManager] removeItemAtPath:dictPath error:nil];
-//        [NSKeyedArchiver archiveRootObject:self.availableVacations toFile:dictPath];
-//    }
-//}
-//
-//-(void)extractTheAvailableVacationsList{
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    if ([paths count] > 0)
-//    {
-//        NSString* dictPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:AVAILABLE_VACATIONS_ARCHIVE_FILE];
-//        NSMutableDictionary* availableVacationExtracted = [NSKeyedUnarchiver unarchiveObjectWithFile:dictPath];
-//        self.availableVacations = availableVacationExtracted;
-//    }
-//}
 
 @end
