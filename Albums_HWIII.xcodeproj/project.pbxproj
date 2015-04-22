@@ -31,6 +31,8 @@
 		82EE6F131AE6FA4700B8936E /* CoverImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE6F121AE6FA4700B8936E /* CoverImageTableViewCell.m */; };
 		82EE6F161AE6FAE600B8936E /* ImagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE6F151AE6FAE600B8936E /* ImagesTableViewController.m */; };
 		82EE6F1B1AE712E500B8936E /* AlbumDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE6F1A1AE712E500B8936E /* AlbumDetailsViewController.m */; };
+		82FC2D6E1AE7938A00626E9D /* SongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FC2D6D1AE7938A00626E9D /* SongTableViewCell.m */; };
+		82FC2D711AE7A99000626E9D /* AddSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FC2D701AE7A99000626E9D /* AddSongViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,10 @@
 		82EE6F181AE6FD1000B8936E /* ImagePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerDelegate.h; sourceTree = "<group>"; };
 		82EE6F191AE712E500B8936E /* AlbumDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumDetailsViewController.h; sourceTree = "<group>"; };
 		82EE6F1A1AE712E500B8936E /* AlbumDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumDetailsViewController.m; sourceTree = "<group>"; };
+		82FC2D6C1AE7938A00626E9D /* SongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewCell.h; sourceTree = "<group>"; };
+		82FC2D6D1AE7938A00626E9D /* SongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewCell.m; sourceTree = "<group>"; };
+		82FC2D6F1AE7A99000626E9D /* AddSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSongViewController.h; sourceTree = "<group>"; };
+		82FC2D701AE7A99000626E9D /* AddSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSongViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +221,8 @@
 				82EE6F151AE6FAE600B8936E /* ImagesTableViewController.m */,
 				82EE6F191AE712E500B8936E /* AlbumDetailsViewController.h */,
 				82EE6F1A1AE712E500B8936E /* AlbumDetailsViewController.m */,
+				82FC2D6F1AE7A99000626E9D /* AddSongViewController.h */,
+				82FC2D701AE7A99000626E9D /* AddSongViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -226,6 +234,8 @@
 				82EE6F0C1AE6D8AC00B8936E /* AlbumTableViewCell.m */,
 				82EE6F111AE6FA4700B8936E /* CoverImageTableViewCell.h */,
 				82EE6F121AE6FA4700B8936E /* CoverImageTableViewCell.m */,
+				82FC2D6C1AE7938A00626E9D /* SongTableViewCell.h */,
+				82FC2D6D1AE7938A00626E9D /* SongTableViewCell.m */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -351,12 +361,14 @@
 				82C0B5A71AE6806F00C9E15A /* AppDelegate.m in Sources */,
 				82C0B5A41AE6806F00C9E15A /* main.m in Sources */,
 				82EE6F131AE6FA4700B8936E /* CoverImageTableViewCell.m in Sources */,
+				82FC2D711AE7A99000626E9D /* AddSongViewController.m in Sources */,
 				82EE6F1B1AE712E500B8936E /* AlbumDetailsViewController.m in Sources */,
 				82EE6F0D1AE6D8AC00B8936E /* AlbumTableViewCell.m in Sources */,
 				82C0B5DD1AE681F200C9E15A /* AlbumTableViewController.m in Sources */,
 				82C0B5E01AE6922200C9E15A /* Album.m in Sources */,
 				82EE6F101AE6ED5F00B8936E /* AddAlbumViewController.m in Sources */,
 				82C0B5E31AE69B4700C9E15A /* Artist.m in Sources */,
+				82FC2D6E1AE7938A00626E9D /* SongTableViewCell.m in Sources */,
 				82EE6F091AE6D1EC00B8936E /* AlbumController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

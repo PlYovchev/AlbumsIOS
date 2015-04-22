@@ -47,7 +47,6 @@
     return [albumController.albums count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AlbumTableViewCell *albumCell = [tableView dequeueReusableCellWithIdentifier:ALBUM_CELL_INDENTIFIER forIndexPath:indexPath];
     
@@ -62,7 +61,6 @@
     return albumCell;
 }
 
-
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
@@ -74,8 +72,6 @@
     return UITableViewCellEditingStyleDelete;
 }
 
-
-
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -84,8 +80,6 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
-
-
 
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
@@ -102,8 +96,6 @@
     [tableView reloadData];
 }
 
-
-
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
@@ -119,7 +111,6 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
 
 /*
 #pragma mark - Navigation

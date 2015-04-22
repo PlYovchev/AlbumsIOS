@@ -8,8 +8,11 @@
 
 #import "AlbumDetailsViewController.h"
 #import "AlbumController.h"
+#import "SongTableViewCell.h"
 
-@interface AlbumDetailsViewController ()
+#define SONG_CELL_INDENTIFIER @"SongCellIndentifier"
+
+@interface AlbumDetailsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *lblAlbumTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewCover;
@@ -17,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblReleasedYear;
 @property (weak, nonatomic) IBOutlet UILabel *lblTracksNumber;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewSongs;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonEdit;
 
 @end
 
@@ -24,6 +28,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self updateLabels];
+    
+    self.tableViewSongs.delegate = self;
+    self.tableViewSongs.dataSource = self;
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self updateLabels];
+    
+    [self.tableViewSongs reloadData];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)updateLabels{
     AlbumController* albumController = [AlbumController sharedAlbumController];
     Album* album = albumController.chosenAlbum;
     self.lblAlbumTitle.text = album.name;
@@ -31,12 +54,98 @@
     self.lblReleasedYear.text = [NSString stringWithFormat:@"%ld", album.releaseYear];
     self.lblTracksNumber.text = [NSString stringWithFormat:@"%ld", album.numberOfSongs];
     self.imageViewCover.image = album.coverImage;
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)barButtonEditClick:(id)sender {
+    self.tableViewSongs.editing = !self.tableViewSongs.editing;
+    
+    
+    if(self.tableViewSongs.editing){
+        [self.barButtonEdit setTitle:@"Done"];
+    }
+    else{
+        [self.barButtonEdit setTitle:@"Edits"];
+    }
+}
+
+#pragma mark - Tableview data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    AlbumController* albumController = [AlbumController sharedAlbumController];
+    Album* album = albumController.chosenAlbum;
+    return [album.songs count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    SongTableViewCell *songCell = [tableView dequeueReusableCellWithIdentifier:SONG_CELL_INDENTIFIER forIndexPath:indexPath];
+    
+    AlbumController* albumController = [AlbumController sharedAlbumController];
+    Album* album = albumController.chosenAlbum;
+    Song* song = [album.songs objectAtIndex:indexPath.row];
+    
+    songCell.lblTrackNumber.text = [NSString stringWithFormat:@"%ld.", indexPath.row + 1];
+    songCell.lblSongName.text = [song name];
+    
+    //Concatenate the names of the artists for the current song with ', ' and display them in 'lblSongArtists'.
+    NSMutableArray* artistsNames = [NSMutableArray array];
+    for (int i = 0; i < [song.artists count]; i++) {
+        [artistsNames addObject:[[song.artists objectAtIndex:i] name]];
+    }
+    
+    NSString* artistsNameSeparatedWithComma = [artistsNames componentsJoinedByString:@", "];
+    songCell.lblSongArtists.text = artistsNameSeparatedWithComma;
+    
+    NSInteger minutes = song.durationInSec / 60;
+    NSInteger seconds = song.durationInSec % 60;
+    songCell.lblSongDuration.text = [NSString stringWithFormat:@"%ld:%.2ld", minutes, seconds];
+    
+    return songCell;
+}
+
+#pragma mark - TableView delegate
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        AlbumController* albumController = [AlbumController sharedAlbumController];
+        Album* album = albumController.chosenAlbum;
+        [album.songs removeObjectAtIndex:indexPath.row];
+        
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self updateLabels];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    AlbumController* albumController = [AlbumController sharedAlbumController];
+    Album* album = albumController.chosenAlbum;
+    Song* fromSong = [album.songs objectAtIndex:fromIndexPath.row];
+    Song* toSong = [album.songs objectAtIndex:toIndexPath.row];
+    
+    [album.songs removeObjectAtIndex:fromIndexPath.row];
+    [album.songs insertObject:toSong atIndex:fromIndexPath.row];
+    
+    [album.songs removeObjectAtIndex:toIndexPath.row];
+    [album.songs insertObject:fromSong atIndex:toIndexPath.row];
+    
+    [tableView reloadData];
 }
 
 /*

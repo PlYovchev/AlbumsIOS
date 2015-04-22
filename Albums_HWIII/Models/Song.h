@@ -13,7 +13,7 @@
 @interface Song : NSObject
 
 @property (nonatomic, copy) NSString* name;
-@property (nonatomic, copy) NSArray* artists;
+@property (nonatomic, copy) NSArray* artists; //The artists are stored in an array because single song can be collaboration between more than one artists.
 @property (nonatomic) NSInteger durationInSec;
 
 -(instancetype)initWithName:(NSString*)name andArtists:(NSArray*) artists andDuration:(NSInteger)durationInSeconds;

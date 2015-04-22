@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FF013F9C-4F5E-41FE-9DC8-DBAA2E2D7CA1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Albums_HWIII</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9CB9D731DCFF13575EADC3A858C08EEA3D2D757F</key>
+		<string>https://github.com/PlYovchev/AlbumsIOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Albums_HWIII.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9CB9D731DCFF13575EADC3A858C08EEA3D2D757F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/PlYovchev/AlbumsIOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9CB9D731DCFF13575EADC3A858C08EEA3D2D757F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9CB9D731DCFF13575EADC3A858C08EEA3D2D757F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AlbumsIOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>
